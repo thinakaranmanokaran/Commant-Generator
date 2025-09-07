@@ -1,0 +1,65 @@
+{
+  "name": "command-generator",
+  "displayName": "Command Generator",
+  "description": "Generate commands for existing code with context menu and shortcuts",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:command-generator.generateCommand",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:python",
+    "onLanguage:java"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "command-generator.generateCommand",
+        "title": "Generate Command for Selection",
+        "category": "Command Generator"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "command-generator.generateCommand",
+          "when": "editorHasSelection && editorTextFocus",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "command-generator.generateCommand",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "command-generator.generateCommand",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.103.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "eslint": "^9.34.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
