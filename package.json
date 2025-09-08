@@ -1,11 +1,42 @@
 {
-  "name": "command-generator",
-  "displayName": "Command Generator AI",
-  "description": "Generate Make/CLI commands using AI based on your code",
+  "name": "code-comment-generator-ai",
+  "displayName": "Comment Generator AI",
+  "publisher": "thinakaran",
+  "description": "AI-powered VS Code extension to automatically generate clean, single-line code comments in any programming language. Save time and improve readability.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.103.0"
   },
+  "icon": "public/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "AI"
+  ],
+  "keywords": [
+    "AI",
+    "code comments",
+    "auto documentation",
+    "productivity",
+    "developer tools",
+    "readability",
+    "VSCode comments",
+    "code helper",
+    "automatic code documentation",
+    "Thinakaran Manokaran"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thinakaranmanokaran/Commant-Generator"
+  },
+  "bugs": {
+    "url": "https://github.com/thinakaranmanokaran/Commant-Generator/issues"
+  },
+  "homepage": "https://github.com/thinakaranmanokaran/Commant-Generator#readme",
   "activationEvents": [
     "onCommand:command-generator.generate"
   ],

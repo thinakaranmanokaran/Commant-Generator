@@ -1,65 +1,135 @@
-# command-generator README
+# Code Comment Generator AI – VS Code Extension
 
-This is the README for your extension "command-generator". After writing up a brief description, we recommend including the following sections.
+✨ **Automatically generate meaningful code comments with AI inside Visual Studio Code.**
+Save time, improve readability, and write cleaner code with a single shortcut.
 
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+[![Version](https://img.shields.io/visual-studio-marketplace/v/command-generator)](https://marketplace.visualstudio.com/items?itemName=command-generator)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/command-generator)](https://marketplace.visualstudio.com/items?itemName=command-generator)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/command-generator)](https://marketplace.visualstudio.com/items?itemName=command-generator)
 
 ---
 
-## Working with Markdown
+## 🚀 Features
 
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+* 🧠 **AI-Powered Code Comments** – Detects the programming language and generates context-aware single-line comments.
+* ⚡ **One Shortcut** – Select code, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>, and get instant comments.
+* 🌐 **Language Aware** – Supports **JavaScript, Python, Java, C++, HTML, CSS, and more**.
+* 🎯 **Clean Output** – No extra formatting, only the correct comment syntax with plain English + emojis.
+* 📋 **Context Menu Support** – Right-click any selection → *Generate Command with AI*.
+* 🔄 **Non-intrusive** – Inserts comments above your selected code, keeping original code intact.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
+---
 
-## For more information
+## 📸 Demo
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Example output:
 
-**Enjoy!**
+<img src="https://raw.githubusercontent.com/thinakaranmanokaran/Commant-Generator/main/public/preview.png" alt="Code Comment Generator AI Preview" />
+
+
+```js
+// Fetches user data from API and logs the name and email 📡👤
+```
+
+---
+
+## 🛠 Installation
+
+1. Open **Visual Studio Code**.
+2. Go to **Extensions Marketplace**.
+3. Search for **"Code Comment Generator AI"**.
+4. Click **Install**.
+
+Or install directly via CLI:
+
+```bash
+code --install-extension command-generator
+```
+
+---
+
+## ⚡ Usage
+
+1. Select the code snippet you want to document.
+2. Run the command:
+
+   * Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>
+   * Or Right-click → *Generate Command with AI*.
+3. Wait a few seconds while the extension generates your comment.
+4. Your new AI-generated comment will appear **above the selected code**.
+
+---
+
+## 💻 Example
+
+### Input
+
+```python
+a = 4
+b = 5
+c = a + b
+print(c)
+```
+
+### Output
+
+```python
+# Calculates the sum of a and b and prints the result ➕📊
+a = 4
+b = 5
+c = a + b
+print(c)
+```
+
+---
+
+## 🔧 Requirements
+
+* Internet connection 🌐 (required for AI processing).
+* VS Code version `^1.103.0` or later.
+
+---
+
+## 📌 Commands
+
+* **Generate Command with AI**
+
+  * Shortcut: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>
+  * Context Menu: Right-click selected code
+
+---
+
+## 📋 Roadmap
+
+* [ ] Multi-line descriptive comments
+* [ ] JSDoc / Docstring style support
+* [ ] Offline model support
+* [ ] Comment style customization
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**Thinakaran Manokaran**
+🌐 [thinakaran.dev](https://thinakaran.dev)
+🐦 [Twitter](https://twitter.com/DheenaManohar)
+💼 [LinkedIn](https://linkedin.com/in/thinakaran-manohar)
+
+---
+
+## 🔍 SEO Keywords
+
+`VS Code Comment Generator`, `AI Code Comments`, `Code Documentation AI`, `VSCode Extension for Code Comments`, `Thinakaran Manokaran`, `Auto Generate Comments`, `AI Code Helper`, `Code Readability Tool`, `Developer Productivity`, `Automatic Code Documentation`.
+
