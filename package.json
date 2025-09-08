@@ -1,65 +1,51 @@
 {
   "name": "command-generator",
-  "displayName": "Command Generator",
-  "description": "Generate commands for existing code with context menu and shortcuts",
+  "displayName": "Command Generator AI",
+  "description": "Generate Make/CLI commands using AI based on your code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.103.0"
   },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [
-    "onCommand:command-generator.generateCommand",
-    "onLanguage:javascript",
-    "onLanguage:typescript",
-    "onLanguage:python",
-    "onLanguage:java"
+    "onCommand:command-generator.generate"
   ],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "command-generator.generateCommand",
-        "title": "Generate Command for Selection",
-        "category": "Command Generator"
+        "command": "command-generator.generate",
+        "title": "Generate Command with AI"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "command-generator.generateCommand",
-          "when": "editorHasSelection && editorTextFocus",
+          "command": "command-generator.generate",
+          "when": "editorTextFocus",
           "group": "navigation"
-        }
-      ],
-      "commandPalette": [
-        {
-          "command": "command-generator.generateCommand",
-          "when": "editorTextFocus"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "command-generator.generateCommand",
+        "command": "command-generator.generate",
         "key": "ctrl+shift+c",
-        "mac": "cmd+shift+c",
-        "when": "editorTextFocus && editorHasSelection"
+        "when": "editorTextFocus"
       }
     ]
   },
   "scripts": {
     "lint": "eslint .",
-    "pretest": "npm run lint",
     "test": "vscode-test"
   },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "dotenv": "^16.3.1"
+  },
   "devDependencies": {
+    "@types/node": "^22.x",
     "@types/vscode": "^1.103.0",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "eslint": "^9.34.0",
-    "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.34.0"
   }
 }
