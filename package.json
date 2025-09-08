@@ -21,7 +21,7 @@
       "editor/context": [
         {
           "command": "command-generator.generate",
-          "when": "editorTextFocus",
+          "when": "editorHasSelection && editorTextFocus",
           "group": "navigation"
         }
       ]
@@ -30,7 +30,7 @@
       {
         "command": "command-generator.generate",
         "key": "ctrl+shift+c",
-        "when": "editorTextFocus"
+        "when": "editorHasSelection && editorTextFocus"
       }
     ]
   },

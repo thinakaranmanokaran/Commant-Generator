@@ -1,5 +1,5 @@
 const vscode = require('vscode');
-const path = require('path');
+const axios = require('axios');
 
 function activate(context) {
 	const disposable = vscode.commands.registerCommand('command-generator.generate', async () => {
@@ -15,56 +15,63 @@ function activate(context) {
 			: editor.document.getText(editor.selection);
 
 		if (!code.trim()) {
-			vscode.window.showWarningMessage('No code found to analyze.');
+			vscode.window.showWarningMessage('No code selected to analyze.');
 			return;
 		}
 
-		try {
-			// Generate comment based on code content
-			const comment = generateComment(code);
+		await vscode.window.withProgress(
+			{
+				location: vscode.ProgressLocation.Notification,
+				title: "Generating AI Comment...",
+				cancellable: false
+			},
+			async () => {
+				try {
+					const prompt = `You are a smart code assistant.
+1. Detect the programming language of the following code.
+2. Generate exactly ONE single-line comment using the correct syntax for that language (//, #, <!-- -->, etc.).
+3. The comment should describe the code in plain English + add 1-2 fitting emojis.
+4. Do not output the code again.
+5. Do NOT include language blocks like \`\`\`javascript or \`\`\`python — only the comment line.
 
-			// Insert comment at the beginning of the selection or file
-			const position = editor.selection.isEmpty
-				? new vscode.Position(0, 0)
-				: editor.selection.start;
+Code:
+${code}`;
 
-			await editor.edit(editBuilder => {
-				editBuilder.insert(position, comment + '\n\n');
-			});
+					const response = await axios.get("https://dheenai.onrender.com/", {
+						params: { text: prompt },
+						timeout: 15000 // prevent hanging forever
+					});
 
-			vscode.window.showInformationMessage('Comment generated successfully!');
+					let comment = response.data?.trim() || "// Could not generate comment";
 
-		} catch (err) {
-			vscode.window.showErrorMessage('Failed to generate comment: ' + err.message);
-		}
+					// Remove accidental code fences
+					comment = comment.replace(/```[\s\S]*?```/g, "").trim();
+
+					const firstLine = comment.split("\n")[0];
+
+					const position = editor.selection.isEmpty
+						? new vscode.Position(0, 0)
+						: editor.selection.start;
+
+					await editor.edit(editBuilder => {
+						editBuilder.insert(position, firstLine + '\n\n');
+					});
+
+					vscode.window.showInformationMessage('AI Comment generated successfully! ✅');
+				} catch (err) {
+					if (err.message.includes("Network Error") || err.code === "ENOTFOUND") {
+						vscode.window.showErrorMessage("Internet connection required 🌐. Please check your network.");
+					} else if (err.code === "ECONNABORTED") {
+						vscode.window.showErrorMessage("Request timed out ⏳. Check your internet connection.");
+					} else {
+						vscode.window.showErrorMessage('Failed to generate comment: ' + err.message);
+					}
+				}
+			}
+		);
 	});
 
 	context.subscriptions.push(disposable);
-}
-
-function generateComment(code) {
-	// Simple pattern matching to generate appropriate comments
-	if (code.includes('function') && code.includes('add') && code.includes('+')) {
-		return '// Addition Function 🎇';
-	} else if (code.includes('function') && code.includes('subtract') && code.includes('-')) {
-		return '// Subtraction Function ➖';
-	} else if (code.includes('function') && code.includes('multiply') && code.includes('*')) {
-		return '// Multiplication Function ✖️';
-	} else if (code.includes('function') && code.includes('divide') && code.includes('/')) {
-		return '// Division Function ➗';
-	} else if (code.includes('function')) {
-		return '// Function Definition 🚀';
-	} else if (code.includes('class')) {
-		return '// Class Definition 🏗️';
-	} else if (code.includes('const') || code.includes('let') || code.includes('var')) {
-		return '// Variable Declaration 📦';
-	} else if (code.includes('if') || code.includes('else')) {
-		return '// Conditional Logic 🤔';
-	} else if (code.includes('for') || code.includes('while')) {
-		return '// Loop Structure 🔄';
-	} else {
-		return '// Code Section 💻';
-	}
 }
 
 function deactivate() { }
