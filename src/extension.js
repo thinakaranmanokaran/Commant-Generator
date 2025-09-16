@@ -39,7 +39,7 @@ ${code}`;
 
 					const response = await axios.get("https://dheenai.onrender.com/", {
 						params: { text: prompt },
-						timeout: 15000 // prevent hanging forever
+						timeout: 60000 // prevent hanging forever
 					});
 
 					let comment = response.data?.trim() || "// Could not generate comment";
@@ -62,7 +62,7 @@ ${code}`;
 					if (err.message.includes("Network Error") || err.code === "ENOTFOUND") {
 						vscode.window.showErrorMessage("Internet connection required 🌐. Please check your network.");
 					} else if (err.code === "ECONNABORTED") {
-						vscode.window.showErrorMessage("Request timed out ⏳. Check your internet connection.");
+						vscode.window.showErrorMessage("Server took too long ⏳. Try again in a moment or increase timeout.");
 					} else {
 						vscode.window.showErrorMessage('Failed to generate comment: ' + err.message);
 					}
