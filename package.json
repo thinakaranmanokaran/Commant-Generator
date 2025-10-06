@@ -3,10 +3,11 @@
   "displayName": "Comment Generator AI",
   "publisher": "thinakaran",
   "description": "AI-powered VS Code extension to automatically generate clean, single-line code comments in any programming language. Save time and improve readability.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.103.0"
   },
+  "license": "MIT",
   "icon": "public/icon.png",
   "galleryBanner": {
     "color": "#1e1e2e",
@@ -17,6 +18,12 @@
     "Programming Languages",
     "AI"
   ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "privacy": {
+    "statement": "This extension may send selected code text to an AI API endpoint to generate comments. No data is stored."
+  },
   "keywords": [
     "AI",
     "code comments",
