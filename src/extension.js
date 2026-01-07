@@ -37,7 +37,7 @@ function activate(context) {
 Code:
 ${code}`;
 
-					const response = await axios.get("https://dheenai.onrender.com/", {
+					const response = await axios.get("https://ai-bl64.onrender.com/", {
 						params: { text: prompt },
 						timeout: 60000 // prevent hanging forever
 					});
